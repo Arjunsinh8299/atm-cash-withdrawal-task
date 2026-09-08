@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ATM Cash Dispensing</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            background-color: #f4f7fb;
+        }
+
+        .atm-container {
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+        }
+
+        .header {
+            background: #0d6efd;
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .denomination-box {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .denomination {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d6efd;
+        }
+
+        .result-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container atm-container">
+
+    <div class="card shadow">
+
+        <!-- Header -->
+        <div class="header p-4">
+            <h2 class="mb-1">ATM Cash Dispensing</h2>
+            <p class="mb-0">
+                Manage ATM cash and process withdrawal
+            </p>
+        </div>
+
+        <div class="card-body p-4">
+
+            <!-- ATM Cash Availability -->
+            <h5 class="mb-3">ATM Cash Availability</h5>
+
+            <div class="row g-3">
+
+                <!-- ₹2000 -->
+                <div class="col-md-6">
+                    <div class="denomination-box">
+
+                        <label
+                            for="notes2000"
+                            class="form-label denomination"
+                        >
+                            ₹2,000 Notes
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="notes2000"
+                            placeholder="Enter number of ₹2,000 notes"
+                            min="0"
+                        >
+
+                    </div>
+                </div>
+
+                <!-- ₹500 -->
+                <div class="col-md-6">
+                    <div class="denomination-box">
+
+                        <label
+                            for="notes500"
+                            class="form-label denomination"
+                        >
+                            ₹500 Notes
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="notes500"
+                            placeholder="Enter number of ₹500 notes"
+                            min="0"
+                        >
+
+                    </div>
+                </div>
+
+                <!-- ₹200 -->
+                <div class="col-md-6">
+                    <div class="denomination-box">
+
+                        <label
+                            for="notes200"
+                            class="form-label denomination"
+                        >
+                            ₹200 Notes
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="notes200"
+                            placeholder="Enter number of ₹200 notes"
+                            min="0"
+                        >
+
+                    </div>
+                </div>
+
+                <!-- ₹100 -->
+                <div class="col-md-6">
+                    <div class="denomination-box">
+
+                        <label
+                            for="notes100"
+                            class="form-label denomination"
+                        >
+                            ₹100 Notes
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="notes100"
+                            placeholder="Enter number of ₹100 notes"
+                            min="0"
+                        >
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Withdrawal Amount -->
+            <div class="mt-4">
+
+                <label
+                    for="withdrawalAmount"
+                    class="form-label fw-semibold"
+                >
+                    Withdrawal Amount
+                </label>
+
+                <div class="input-group input-group-lg">
+
+                    <span class="input-group-text">₹</span>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="withdrawalAmount"
+                        placeholder="Enter withdrawal amount"
+                        min="100"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- Action Button -->
+            <div class="d-grid mt-4">
+
+                <button
+                    type="button"
+                    class="btn btn-primary btn-lg"
+                    id="dispenseBtn"
+                >
+                    Dispense Cash
+                </button>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Transaction Result -->
+            <div class="result-section">
+
+                <h5 class="mb-3">
+                    Transaction Result
+                </h5>
+
+                <!-- You can update this section using JavaScript -->
+
+                <div id="transactionStatus"
+                     class="alert alert-secondary">
+                    Transaction details will appear here.
+                </div>
+
+                <!-- Dispensed Notes Table -->
+
+                <h6 class="mt-4 mb-3">
+                    Notes Dispensed
+                </h6>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover">
+
+                        <thead class="table-dark">
+
+                            <tr>
+                                <th>Denomination</th>
+                                <th>Notes Dispensed</th>
+                                <th>Total</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="dispensedNotes">
+
+                            <tr>
+                                <td>₹2,000</td>
+                                <td>0</td>
+                                <td>₹0</td>
+                            </tr>
+
+                            <tr>
+                                <td>₹500</td>
+                                <td>0</td>
+                                <td>₹0</td>
+                            </tr>
+
+                            <tr>
+                                <td>₹200</td>
+                                <td>0</td>
+                                <td>₹0</td>
+                            </tr>
+
+                            <tr>
+                                <td>₹100</td>
+                                <td>0</td>
+                                <td>₹0</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- Remaining Cash -->
+
+                <div class="row mt-3">
+
+                    <div class="col-md-6">
+
+                        <div class="card bg-white border">
+
+                            <div class="card-body">
+
+                                <h6 class="text-muted">
+                                    Remaining Cash in ATM
+                                </h6>
+
+                                <h3
+                                    id="remainingCash"
+                                    class="text-success"
+                                >
+                                    ₹0
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="card bg-white border">
+
+                            <div class="card-body">
+
+                                <h6 class="text-muted">
+                                    Withdrawal Amount
+                                </h6>
+
+                                <h3
+                                    id="displayWithdrawal"
+                                    class="text-primary"
+                                >
+                                    ₹0
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script src="AtmTask.js"></script>
+
+</body>
+</html>
+
